@@ -57,6 +57,11 @@ public:
         {
             scene->add(name, entity.get_model());
         }
+
+        if (entity.get_rigidbody())
+        {
+            world.add_rigidbody(entity.get_rigidbody()->get_rigidbody().get());
+        }
     }
 
     /**

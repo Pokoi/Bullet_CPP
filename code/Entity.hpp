@@ -9,14 +9,17 @@
 class Entity
 {
     std::shared_ptr<glt::Model> model;
-    Rigidbody rigidbody;
-
+    std::shared_ptr<Rigidbody>  rigidbody;
+    class Scene* scene;
 
 public:
 
-    Entity()
-    {
-    }
+    /**
+    @brief Create an entity
+    @param scene A reference to the scene this entity belongs to 
+    */
+    Entity(class Scene* scene);
+    
 
 
     /**
@@ -35,6 +38,15 @@ public:
     std::shared_ptr<glt::Model>& get_model()
     {
         return model;
+    }
+
+    /**
+    @brief Get the rigidbody of the entity
+    @return The rigidbody attached to this entity. If the entity does not have one, this returns nullptr
+    */
+    std::shared_ptr<Rigidbody> & get_rigidbody()
+    {
+        return rigidbody;
     }
 
 };

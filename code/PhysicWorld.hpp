@@ -48,6 +48,15 @@ public:
 
     }
 
+    /**
+    @brief Adds a rigidbody to the dynamic world
+    @param rigidbody The rigidbody to add 
+    */
+    void add_rigidbody(btRigidBody* rigidbody)
+    {
+        dynamicsWorld->addRigidBody(rigidbody);
+    }
+
 
 };
 
