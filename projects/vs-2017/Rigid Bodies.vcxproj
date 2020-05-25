@@ -18,6 +18,28 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\headers\BoxCollider.hpp" />
+    <ClInclude Include="..\..\code\headers\CapsuleCollider.hpp" />
+    <ClInclude Include="..\..\code\headers\Collider.hpp" />
+    <ClInclude Include="..\..\code\headers\Entity.hpp" />
+    <ClInclude Include="..\..\code\headers\Constraint.hpp" />
+    <ClInclude Include="..\..\code\headers\PhysicTask.hpp" />
+    <ClInclude Include="..\..\code\headers\RenderComponent.hpp" />
+    <ClInclude Include="..\..\code\headers\RenderTask.hpp" />
+    <ClInclude Include="..\..\code\headers\RigidbodyComponent.hpp" />
+    <ClInclude Include="..\..\code\headers\Scene.hpp" />
+    <ClInclude Include="..\..\code\headers\SphereCollider.hpp" />
+    <ClInclude Include="..\..\code\headers\TransformComponent.hpp" />
+    <ClInclude Include="..\..\code\headers\Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\sources\Entity.cpp" />
+    <ClCompile Include="..\..\code\sources\main.cpp" />
+    <ClCompile Include="..\..\code\sources\RenderComponent.cpp" />
+    <ClCompile Include="..\..\code\sources\RigidbodyComponent.cpp" />
+    <ClCompile Include="..\..\code\sources\TransformComponent.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3EF241B2-8C38-4489-B097-10094EDDF232}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -89,7 +111,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../libraries/bullet-2.87/src;../../libraries/opengl-toolkit/headers;../../libraries/sfml-2.4.2-windows-vc15-32bit/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../libraries/bullet-2.87/src;../../libraries/opengl-toolkit/headers;../../libraries/sfml-2.4.2-windows-vc15-32bit/include;../../code/headers</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -121,7 +143,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../libraries/bullet-2.87/src;../../libraries/opengl-toolkit/headers;../../libraries/sfml-2.4.2-windows-vc15-32bit/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../libraries/bullet-2.87/src;../../libraries/opengl-toolkit/headers;../../libraries/sfml-2.4.2-windows-vc15-32bit/include;../../code/headers</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -150,18 +172,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\code\Entity.cpp" />
-    <ClCompile Include="..\..\code\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\code\Camera.hpp" />
-    <ClInclude Include="..\..\code\Entity.hpp" />
-    <ClInclude Include="..\..\code\Light.hpp" />
-    <ClInclude Include="..\..\code\PhysicWorld.hpp" />
-    <ClInclude Include="..\..\code\Rigidbody.hpp" />
-    <ClInclude Include="..\..\code\Scene.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
