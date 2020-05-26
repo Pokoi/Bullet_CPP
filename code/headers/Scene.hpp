@@ -38,6 +38,7 @@
 
 #include <memory>
 #include <string>
+#include <iostream>
 
 namespace BulletAssignment
 {
@@ -52,6 +53,7 @@ namespace BulletAssignment
         std::map<std::string, std::shared_ptr<Entity>> entities;
 
         bool running = true;
+        bool has_key = false;
 
         float aspect_ratio;
 
@@ -61,18 +63,7 @@ namespace BulletAssignment
                 std::string window_name,
                 unsigned int width,
                 unsigned int height
-            ):
-                view {window_name, width, height},
-                world{}
-        {            
-            aspect_ratio = float(width) / float(height);
-
-
-            //Player creation           
-            std::shared_ptr<Entity> player(this, "player");         
-
-
-        }
+            );
 
         void run()
         {
@@ -83,7 +74,7 @@ namespace BulletAssignment
             view.get_camera()->set_aspect_ratio(aspect_ratio);
            
 
-            glClearColor(0.4f, 0.5f, 0.2f, 1.f);
+            glClearColor(0.4f, 0.f, 0.2f, 1.f);
 
             sf::Clock timer;
             auto lastTime = sf::Time::Zero;
@@ -92,11 +83,15 @@ namespace BulletAssignment
             running = true;
 
             do {
+
                 nowTime = timer.getElapsedTime();
 
-                input();
+                input(deltaTime.asSeconds());
 
+                platform_movements(deltaTime.asSeconds());
                 world.run(deltaTime.asSeconds());
+
+                check_if_key();
 
                 for (auto& entity : entities)
                 {
@@ -112,32 +107,33 @@ namespace BulletAssignment
             } while (running);
         }
 
-        void input()
+        void input(float delta)
         {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            {
-            }
+            float player_x_velocity = 0.f;            
+            float player_z_velocity = 0.f;
+            float speed = 5.f;
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            {
-            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) { player_z_velocity = -speed;  }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            {
-            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {  player_x_velocity = -speed;}
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            {
-            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) { player_z_velocity = speed; }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) { player_x_velocity = speed;  }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
             {
+                entities["player"]->get_rigidbody_component()->get_rigidbody()->applyCentralImpulse(btVector3(0.f, 50.f * delta, 0.f));
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 running = false;
             }
+
+            float player_y_velocity = entities["player"]->get_rigidbody_component()->get_rigidbody()->getLinearVelocity()[1];
+
+            entities["player"]->get_rigidbody_component()->get_rigidbody()->setLinearVelocity(btVector3 (player_x_velocity, player_y_velocity, player_z_velocity));
         }
 
         void render()
@@ -164,6 +160,27 @@ namespace BulletAssignment
         {
             entities[name] = entity;
         }
+
+        void platform_movements(float delta);
+       
+       
+        void check_if_key()
+        {            
+
+            if (!has_key)
+            {
+                btVector3 player_position   = entities["player"]->get_rigidbody_component()->get_rigidbody()->getWorldTransform().getOrigin();
+                btVector3 key_position      = entities["key"]->get_rigidbody_component()->get_rigidbody()->getWorldTransform().getOrigin();
+
+                if (std::abs(btDistance(player_position, key_position)) <= 1.f)
+                {
+                    has_key = true;
+                    entities["key"]->get_rigidbody_component()->get_rigidbody()->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                    entities["key"]->get_render_component()->get_model()->set_visible(false);
+                }
+            }
+        }
+
 
     };
 }

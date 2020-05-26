@@ -1,6 +1,6 @@
 /*
- * File: BoxCollider.hpp
- * File Created: 25th May 2020
+ * File: Player.hpp
+ * File Created: 26th May 2020
  * ––––––––––––––––––––––––
  * Author: Jesus Fermin, 'Pokoi', Villar  (hello@pokoidev.com)
  * ––––––––––––––––––––––––
@@ -29,50 +29,20 @@
 
 #pragma once
 
-#include <Collider.hpp>
+#include <Entity.hpp>
 
 namespace BulletAssignment
 {
-    class BoxCollider : public Collider
+
+    class Player : public Entity
     {
-    
-    public:
         
-        struct Dimensions
+    public:
+
+        Player()
         {
-            float x;
-            float y;
-            float z;
-
-            Dimensions(
-                        float x,
-                        float y,
-                        float z
-                      ) :
-                        x {x},
-                        y {y},
-                        z {z}
-            {}
-
-        } dimensions;
-
-        BoxCollider (
-                        btScalar    mass, 
-                        btVector3   inertia, 
-                        Dimensions  dimensions = Dimensions(1.f, 1.f, 1.f)
-                    )  : 
-                        dimensions  {dimensions},
-                        Collider    (
-                                        std::shared_ptr<btCollisionShape> ( new btBoxShape(btVector3(dimensions.x, dimensions.y, dimensions.z))),
-                                        mass,
-                                        inertia
-                                    )
-        {}
-
-        Dimensions get_dimensions() const
-        {
-            return dimensions;
-        }      
+        
+        }
 
     };
 

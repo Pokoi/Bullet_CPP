@@ -36,6 +36,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\code\sources\Entity.cpp" />
     <ClCompile Include="..\..\code\sources\main.cpp" />
+    <ClCompile Include="..\..\code\sources\Scene.cpp" />
     <ClCompile Include="..\..\code\sources\RenderComponent.cpp" />
     <ClCompile Include="..\..\code\sources\RigidbodyComponent.cpp" />
     <ClCompile Include="..\..\code\sources\TransformComponent.cpp" />

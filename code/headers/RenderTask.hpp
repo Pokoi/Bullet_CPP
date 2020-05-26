@@ -57,7 +57,7 @@ namespace BulletAssignment
                     
         {
             renderer    = std::make_shared<glt::Render_Node>();
-            camera      = std::make_shared<glt::Camera>(20.f, 1.f, 50.f, 1.f);
+            camera      = std::make_shared<glt::Camera>(90.f, 1.f, 50.f, 1.f);
             light       = std::make_shared<glt::Light>();
 
             renderer->add("camera", camera);
@@ -69,7 +69,9 @@ namespace BulletAssignment
 
         void run()
         {
+            window.clear();
             renderer->render();
+            window.render();
         }
 
         void add_render_model(std::shared_ptr <RenderComponent>& component)

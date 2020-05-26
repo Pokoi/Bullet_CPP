@@ -32,10 +32,11 @@
 
 namespace BulletAssignment
 {
-    RenderComponent::RenderComponent(std::string file_path, Entity* owner)
+    RenderComponent::RenderComponent(std::string file_path, Entity* owner, glm::vec3 scale, glm::vec3 offset)
     {
         this->owner = owner;
-
+        this->scale = scale;
+        this->offset = offset;
         this->model = std::make_shared<glt::Model>(glt::Model_Obj(file_path));
     }
 }

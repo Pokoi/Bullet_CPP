@@ -51,8 +51,8 @@ namespace BulletAssignment
 
         } configuration;
 
-
     public:
+
 
         Collider()
         {}

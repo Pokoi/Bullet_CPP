@@ -40,9 +40,12 @@ namespace BulletAssignment
 
         class Entity* owner;
 
+        glm::vec3 scale;
+        glm::vec3 offset;
+
     public:
 
-        RenderComponent(std::string file_path, class Entity* owner);
+        RenderComponent(std::string file_path, class Entity* owner, glm::vec3 scale, glm::vec3 offset);
 
         class Entity* get_owner()
         {
@@ -52,6 +55,16 @@ namespace BulletAssignment
         std::shared_ptr <glt::Model>& get_model()
         {
             return model;
+        }
+
+        glm::vec3 get_scale()
+        {
+            return scale;
+        }
+
+        glm::vec3 get_offset()
+        {
+            return offset;
         }
 
     };

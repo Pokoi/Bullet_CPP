@@ -35,6 +35,8 @@ namespace BulletAssignment
 {
     class SphereCollider : public Collider
     {
+    public:
+        
         struct Dimensions
         {
             float radius;
@@ -43,9 +45,6 @@ namespace BulletAssignment
             {}
 
         } dimensions;
-
-
-    public:
 
         SphereCollider  (
                             btScalar mass, 

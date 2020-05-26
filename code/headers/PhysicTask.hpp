@@ -59,7 +59,7 @@ namespace BulletAssignment
             collision_dispatcher = std::make_shared<btCollisionDispatcher>(&collision_configuration);
 
             world = std::make_shared<btDiscreteDynamicsWorld>(
-                                                                &collision_dispatcher, 
+                                                                collision_dispatcher.get(), 
                                                                 &overlapping,
                                                                 &constraint_solver,
                                                                 &collision_configuration

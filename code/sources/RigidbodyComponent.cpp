@@ -33,11 +33,12 @@
 
 namespace BulletAssignment
 {
-    RigidbodyComponent::RigidbodyComponent(            
-                            std::shared_ptr <Collider>& collider,
-                            Entity* owner,
-                            RigidbodyTypes type
-                        )
+    RigidbodyComponent::RigidbodyComponent(     
+                                            btVector3 location,
+                                            std::shared_ptr <Collider>& collider,
+                                            Entity* owner,
+                                            RigidbodyTypes type
+                                        )
     {
         this->owner     = owner;
         this->collider  = collider;
@@ -48,7 +49,7 @@ namespace BulletAssignment
 
         auto position = owner->get_transform().get_position();
 
-        transform.setOrigin(btVector3(position[0], position[1], position[2]));
+        transform.setOrigin(location);
         
         motion_state = std::make_shared< btDefaultMotionState >(transform);
 
@@ -76,6 +77,7 @@ namespace BulletAssignment
                                                                         );
 
             rigidbody = std::make_shared<btRigidBody>(construction_info);
+            
         }
 
     }

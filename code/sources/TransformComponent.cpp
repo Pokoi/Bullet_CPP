@@ -41,7 +41,7 @@ namespace BulletAssignment
 
     glm::mat4 TransformComponent::get_transformation()
     {
-        if (owner->get_parent()) return transformation * owner->get_parent()->get_transform();
+        if (owner->get_parent()) return transformation * owner->get_parent()->get_transform().get_transformation();
         return transformation;
     }
 

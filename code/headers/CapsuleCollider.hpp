@@ -35,6 +35,9 @@ namespace BulletAssignment
 {
     class CapsuleCollider : public Collider
     {
+    
+    public:
+        
         struct Dimensions
         {
             float radius;
@@ -49,9 +52,6 @@ namespace BulletAssignment
             {}
 
         } dimensions;
-
-
-    public:
 
         CapsuleCollider(
                             btScalar mass,

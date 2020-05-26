@@ -55,6 +55,7 @@ namespace BulletAssignment
 
         RigidbodyComponent 
                     (
+                       btVector3 location,
                        std::shared_ptr <Collider> & collider, 
                        class Entity * owner,
                        RigidbodyTypes type
